@@ -15,6 +15,7 @@ def main():
     expressions = []
     for (i, j) in generate(sum_upper_bound):
         expressions.append('%-2d+%2d =' % (i, j))
+        expressions.append('%-2d-%2d =' % (i + j, i))
     random.shuffle(expressions)
     for expression in expressions:
         print(expression)
