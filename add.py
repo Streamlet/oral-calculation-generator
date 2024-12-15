@@ -21,7 +21,6 @@ def main():
     expressions = []
     for t in generate(2, args.min, args.max):
         expressions.append('%-2d+%2d =' % (t[0], t[1]))
-        expressions.append('%-2d-%2d =' % (sum(t), t[0]))
     if args.count is not None:
         while (len(expressions) < args.count):
             expressions = expressions * ((args.count - 1) // len(expressions) + 1)

@@ -15,13 +15,16 @@ def main():
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('-m', '--min', default=0, type=int)
     parser.add_argument('-M', '--max', default=10, type=int)
+    parser.add_argument('-n', '--number', type=int)
     parser.add_argument('-c', '--count', type=int)
     args = parser.parse_args()
 
     expressions = []
     for t in generate(2, args.min, args.max):
-        expressions.append('%-2d+%2d =' % (t[0], t[1]))
-        expressions.append('%-2d-%2d =' % (sum(t), t[0]))
+        if args.number is None or t[0] == args.number or t[1] == args.number:
+            expressions.append('%-2d+%2d =' % (t[0], t[1]))
+        if args.number is None or t[0] == args.number:
+            expressions.append('%-2d-%2d =' % (sum(t), t[0]))
     if args.count is not None:
         while (len(expressions) < args.count):
             expressions = expressions * ((args.count - 1) // len(expressions) + 1)
